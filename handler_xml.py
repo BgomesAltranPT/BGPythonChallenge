@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import xmltodict as xmldict
 from lxml import etree as etree
 import messages
 
@@ -49,8 +48,16 @@ class xml_handler:
     @staticmethod
     def get_dict_from_xml(iv_path):
 
-        with open(iv_path, 'r') as lv_file:
-            return xmldict.parse(lv_file)
+        with open(iv_path, 'r'):
+
+            lv_parser = etree.XMLParser(target=etree.TreeBuilder())
+            lv_root   = etree.XML(open(iv_path).read(), lv_parser)
+            ll_ele    = {}
+
+            for lv_ele in lv_root:
+                ll_ele[lv_ele.tag] = lv_ele.text
+
+            return ll_ele
 
         raise Exception(messages.error_xml_file)
 
