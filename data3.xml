@@ -1,0 +1,4 @@
+<bit:a xmlns:bit="http://example.org/types">
+  <stringMember>str3</stringMember>
+  <intMember>3</intMember>
+</bit:a>
